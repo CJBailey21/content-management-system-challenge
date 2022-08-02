@@ -115,7 +115,7 @@ async function add_employee() {
         }
     ])
     .then((res) => {
-        connection.query(`INSERT INTO Roles (title, salary, role_dep) VALUES ('${res.title}', ${res.salary}, ${res.role_dep});`)
+        connection.query(`INSERT INTO Employees (first_name, last_name, title, manager) VALUES ('${res.first}', '${res.last}', '${res.role}', '${res.manager}');`)
     })
     .then(start)
 }
@@ -132,7 +132,7 @@ async function start() {
             type: 'list',
             name: 'start',
             message: 'choose an option:',
-            choices: ['View all Departments', 'Add Department','View all Roles', 'Add Role', 'View all Employees', 'Add Employee', 'Update Employee Role', 'Exit']
+            choices: ['View all Departments', 'Add Department','View all Roles', 'Add Role', 'View all Employees', 'Add Employee', 'Exit']
         }
     ]).then((res) => {
         if (res.start === 'View all Departments') {
@@ -147,8 +147,6 @@ async function start() {
             add_department()
         } else if (res.start === 'Add Role') {
             add_role()
-        } else if (res.start === 'Update Employee Role') {
-            update_role()
         } else if (res.start === 'Exit') {
             exit()
         }
