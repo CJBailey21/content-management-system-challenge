@@ -25,7 +25,6 @@ async function add_role() {
     //inside inquirer show all departments as a list, select one to add a role
     //when selected grab id of department
     const departments = await getDepartments()
-    console.log(departments);
     inquirer.prompt([
         {
             type: 'input',

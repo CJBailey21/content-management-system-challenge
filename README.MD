@@ -4,6 +4,8 @@
 
   ## Description
 
+
+  My screencastify seems to not be working. Multiple attempts to record were tried.
   An employee management system that maintains and allows for updates of the employees, departments, and roles all through the terminal. Viewing departments, roles, and employees is also done through the prompts
 
   ## Table of Contents
