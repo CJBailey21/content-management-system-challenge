@@ -40,7 +40,7 @@ async function add_role() {
         {
             type: 'list',
             name: 'role_dep',
-            message: 'choose ',
+            message: 'choose department:',
             choices: departments.map(dep => {
                 return {
                     name: dep.department,
@@ -100,7 +100,7 @@ async function add_employee() {
         {
             type: 'list',
             name: 'role',
-            message: 'choose ',
+            message: 'choose role:',
             choices: roles.map(role => {
                 return {
                     name: role.title,
