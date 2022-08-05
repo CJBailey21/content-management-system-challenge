@@ -15,7 +15,7 @@ async function getRoles() {
 async function roles() {
     const results = await connection.query(`SELECT Roles.title, Roles.role_id, Departments.department, Roles.salary
     FROM Roles
-    JOIN Departments on Roles.role_dep = Departments.dep_role;`)
+    JOIN Departments on Roles.role_dep = Departments.id;`)
     console.table(results[0])
     start()
 }
@@ -65,20 +65,22 @@ async function departments() {
     start()
 }
 //function to add a department into the database
-function add_department() {
+async function add_department() {
     inquirer.prompt([
         {
             type: 'input',
             name: 'department',
             message: 'insert department name:'
         }
-    ]).then(start)
+    ]).then((res) => {
+        connection.query(`INSERT INTO Departments (department) VALUES ('${res.department}');`)
+    }).then(start)
 }
 //displays a table made up of pieces of each of the 3 tables and is readable in the terminal
 async function employees() {
-    const results = await connection.query(`SELECT Employees.id, Employees.first_name, Employees.last_name, Employees.title, Departments.department, Roles.salary, Employees.manager
+    const results = await connection.query(`SELECT Employees.id, Employees.first_name, Employees.last_name, Employees.role_id, Departments.department, Roles.salary, Employees.manager
     FROM Employees, Departments, Roles
-    WHERE Employees.title = Roles.title AND Roles.role_dep = Departments.dep_role`)
+    WHERE Employees.role_id = Roles.role_id AND Roles.role_dep = Departments.id`)
     console.table(results[0])
     start()
 }
@@ -114,14 +116,15 @@ async function add_employee() {
         }
     ])
     .then((res) => {
-        connection.query(`INSERT INTO Employees (first_name, last_name, title, manager) VALUES ('${res.first}', '${res.last}', '${res.role}', '${res.manager}');`)
+        console.log(res);
+        return connection.query(`INSERT INTO Employees (first_name, last_name, role_id, manager) VALUES ('${res.first}', '${res.last}', '${res.role}', '${res.manager}');`)
     })
     .then(start)
 }
 
 //exit function to end when completed
 async function exit() {
-    prompt.ui.close()
+    process.exit(0)
 }
 
 // start function, all other functions will run this after finishing their own function

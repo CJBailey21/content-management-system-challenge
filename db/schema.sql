@@ -4,27 +4,28 @@ CREATE DATABASE employee_management;
 
 USE employee_management;
 
-CREATE TABLE Employees(
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    first_name VARCHAR(250) NOT NULL,
-    last_name VARCHAR(250) NOT NULL,
-    title VARCHAR(250) NOT NULL,
-    manager VARCHAR(250) DEFAULT 'N/A'
-);
 
 CREATE TABLE Departments(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    department VARCHAR(250) NOT NULL,
-    dep_role INT NOT NULL
+    department VARCHAR(250) NOT NULL
 );
 
 CREATE TABLE Roles(
     role_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(250) NOT NULL,
     salary INT,
-    role_dep INT NOT NULL
+    role_dep INT,
+    FOREIGN KEY (role_dep) REFERENCES Departments(id)
 );
 
+CREATE TABLE Employees(
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    first_name VARCHAR(250) NOT NULL,
+    last_name VARCHAR(250) NOT NULL,
+    role_id INT NOT NULL,
+    manager VARCHAR(250),
+    FOREIGN KEY (role_id) REFERENCES Roles(role_id)
+);
 
 -- `SELECT Departments.department, Departments.id WHERE Departments.departments = res.department`
 
