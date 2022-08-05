@@ -4,8 +4,6 @@
 
   ## Description
 
-
-  My screencastify seems to not be working. Multiple attempts to record were tried.
   An employee management system that maintains and allows for updates of the employees, departments, and roles all through the terminal. Viewing departments, roles, and employees is also done through the prompts
 
   ## Table of Contents
@@ -20,6 +18,8 @@
   ## Usage
 
   run the code and it allows for the choice of viewing different areas, adding new items to each area, or updating an employees info. After choosing an option, you are provided either a table to view the content or a prompt to enter in info to be added or edited.
+
+  video of app usage: https://drive.google.com/file/d/1bL6JhUp85fBVdxT70742Re3nJMKCl6g-/view
 
   ## License
 
